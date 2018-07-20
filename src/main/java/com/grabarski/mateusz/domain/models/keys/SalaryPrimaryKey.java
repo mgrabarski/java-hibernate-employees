@@ -3,22 +3,20 @@ package com.grabarski.mateusz.domain.models.keys;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Objects;
 
 /**
  * Created by Mateusz Grabarski on 20.07.2018.
  */
 @Embeddable
-public class TitlePrimaryId implements Serializable {
+public class SalaryPrimaryKey implements Serializable {
 
-    @Column(name = "empNo")
+    @Column(name = "emp_no")
     private int empNo;
 
-    @Column(name = "titleColumn")
-    private String title;
-
-//    @Column(name = "from_date")
-//    private Date fromDate;
+    @Column(name = "from_date")
+    private Date fromDate;
 
     public int getEmpNo() {
         return empNo;
@@ -28,34 +26,26 @@ public class TitlePrimaryId implements Serializable {
         this.empNo = empNo;
     }
 
-    public String getTitle() {
-        return title;
+    public Date getFromDate() {
+        return fromDate;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
     }
-
-//    public Date getFrom_date() {
-//        return fromDate;
-//    }
-//
-//    public void setFrom_date(Date from_date) {
-//        this.fromDate = from_date;
-//    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TitlePrimaryId that = (TitlePrimaryId) o;
+        SalaryPrimaryKey that = (SalaryPrimaryKey) o;
         return empNo == that.empNo &&
-                Objects.equals(title, that.title);
+                Objects.equals(fromDate, that.fromDate);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(empNo, title);
+        return Objects.hash(empNo, fromDate);
     }
 }

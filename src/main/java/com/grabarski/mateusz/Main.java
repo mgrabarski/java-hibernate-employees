@@ -1,6 +1,6 @@
 package com.grabarski.mateusz;
 
-import com.grabarski.mateusz.domain.models.Title;
+import com.grabarski.mateusz.domain.models.Salary;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,10 +15,10 @@ public class Main {
         try (SessionFactory factory = new Configuration().configure().buildSessionFactory();
              Session session = factory.openSession()) {
 
-            Query<Title> query = session.createQuery(" FROM Title t");
+            Query<Salary> query = session.createQuery(" FROM Salary s ");
             query.setMaxResults(10);
 
-            query.stream().forEach(title -> System.out.println(title.getFromDate()));
+            query.stream().forEach(salary -> System.out.println(salary.getSalary()));
         }
     }
 }

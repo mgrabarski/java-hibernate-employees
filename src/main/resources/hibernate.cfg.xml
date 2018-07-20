@@ -4,6 +4,8 @@
 <hibernate-configuration>
     <session-factory>
 
+        <property name="hibernate.show_sql">true</property>
+
         <property name="connection.driver_class">
             com.mysql.jdbc.Driver
         </property>
@@ -21,5 +23,6 @@
 
         <mapping class="com.grabarski.mateusz.domain.models.Employee"/>
         <mapping class="com.grabarski.mateusz.domain.models.Title"/>
+        <mapping class="com.grabarski.mateusz.domain.models.Salary"/>
     </session-factory>
 </hibernate-configuration>
