@@ -20,5 +20,6 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="com.grabarski.mateusz.domain.models.Employee"/>
+        <mapping class="com.grabarski.mateusz.domain.models.Title"/>
     </session-factory>
 </hibernate-configuration>
