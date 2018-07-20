@@ -15,10 +15,9 @@ public class Main {
         try (SessionFactory factory = new Configuration().configure().buildSessionFactory();
              Session session = factory.openSession()) {
 
-            Query<Employee> query = session.createQuery(" FROM Employee e WHERE e.id = 10001");
-            query.setMaxResults(10);
+            Query<Employee> query = session.createQuery(" FROM Employee e ");
 
-            query.stream().forEach(employee -> System.out.println(employee.getSalaries().size()));
+            query.stream().forEach(employee -> System.out.println(employee.getDepartments().size()));
         }
     }
 }
