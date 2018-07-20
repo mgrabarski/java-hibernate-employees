@@ -1,6 +1,6 @@
 package com.grabarski.mateusz;
 
-import com.grabarski.mateusz.domain.models.Salary;
+import com.grabarski.mateusz.domain.models.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,10 +15,12 @@ public class Main {
         try (SessionFactory factory = new Configuration().configure().buildSessionFactory();
              Session session = factory.openSession()) {
 
-            Query<Salary> query = session.createQuery(" FROM Salary s ");
+            Query<Employee> query = session.createQuery(" FROM Employee e ");
             query.setMaxResults(10);
 
-            query.stream().forEach(salary -> System.out.println(salary.getSalary()));
+            query.stream().forEach(employee -> {
+                System.out.println(employee.getTitles().size());
+            });
         }
     }
 }

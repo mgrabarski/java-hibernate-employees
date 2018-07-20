@@ -4,6 +4,7 @@ import com.grabarski.mateusz.domain.models.enums.GenderEnum;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * Created by Mateusz Grabarski on 20.07.2018.
@@ -28,6 +29,9 @@ public class Employee {
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
+
+    @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+    private List<Title> titles;
 
     public Employee() {
     }
@@ -70,5 +74,13 @@ public class Employee {
 
     public void setGender(GenderEnum gender) {
         this.gender = gender;
+    }
+
+    public List<Title> getTitles() {
+        return titles;
+    }
+
+    public void setTitles(List<Title> titles) {
+        this.titles = titles;
     }
 }
