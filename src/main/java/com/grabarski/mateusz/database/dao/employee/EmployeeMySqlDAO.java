@@ -5,6 +5,7 @@ import com.grabarski.mateusz.database.session.SessionFactoryProvider;
 import com.grabarski.mateusz.domain.models.Employee;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  * Created by Mateusz Grabarski on 22.07.2018.
@@ -51,9 +52,12 @@ public class EmployeeMySqlDAO implements EmployeeDAO {
     }
 
     @Override
-    public Employee getEmployeeById(String id) {
+    public Employee getEmployeeById(int id) {
         Session session = sessionFactoryProvider.getSession();
-        Employee employee = session.load(Employee.class, id);
+        Query<Employee> query = session.createQuery("FROM Employee  e WHERE e.id = :id");
+        query.setParameter("id", id);
+
+        Employee employee = query.getSingleResult();
 
         sessionFactoryProvider.close();
 

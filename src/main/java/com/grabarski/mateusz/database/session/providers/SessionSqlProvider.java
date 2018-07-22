@@ -18,6 +18,9 @@ public class SessionSqlProvider implements SessionFactoryProvider {
 
     @Override
     public Session getSession() {
+        if (sessionFactory.isClosed()) {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+        }
         return sessionFactory.openSession();
     }
 

@@ -12,5 +12,5 @@ public interface EmployeeDAO {
 
     void delete(Employee employee);
 
-    Employee getEmployeeById(String id);
+    Employee getEmployeeById(int id);
 }

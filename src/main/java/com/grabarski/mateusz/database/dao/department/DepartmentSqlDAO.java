@@ -5,6 +5,7 @@ import com.grabarski.mateusz.database.session.SessionFactoryProvider;
 import com.grabarski.mateusz.domain.models.Department;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  * Created by Mateusz Grabarski on 22.07.2018.
@@ -56,7 +57,10 @@ public class DepartmentSqlDAO implements DepartmentDAO {
     @Override
     public Department getDepartmentById(String id) {
         Session session = sessionFactoryProvider.getSession();
-        Department department = session.load(Department.class, id);
+        Query<Department> query = session.createQuery("FROM Department d WHERE d.id =:id");
+        query.setParameter("id", id);
+
+        Department department = query.getSingleResult();
 
         sessionFactoryProvider.close();
 
