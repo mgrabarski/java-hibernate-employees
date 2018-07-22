@@ -25,7 +25,7 @@ public class SessionSqlProvider implements SessionFactoryProvider {
     }
 
     @Override
-    public void close() {
+    public void closeSession() {
         sessionFactory.close();
     }
 }

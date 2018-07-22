@@ -25,8 +25,6 @@ public class EmployeeMySqlDAO implements EmployeeDAO {
 
         session.save(employee);
         transaction.commit();
-
-        sessionFactoryProvider.close();
     }
 
     @Override
@@ -36,8 +34,6 @@ public class EmployeeMySqlDAO implements EmployeeDAO {
 
         session.update(employee);
         transaction.commit();
-
-        sessionFactoryProvider.close();
     }
 
     @Override
@@ -47,8 +43,6 @@ public class EmployeeMySqlDAO implements EmployeeDAO {
 
         session.delete(employee);
         transaction.commit();
-
-        sessionFactoryProvider.close();
     }
 
     @Override
@@ -57,10 +51,6 @@ public class EmployeeMySqlDAO implements EmployeeDAO {
         Query<Employee> query = session.createQuery("FROM Employee  e WHERE e.id = :id");
         query.setParameter("id", id);
 
-        Employee employee = query.getSingleResult();
-
-        sessionFactoryProvider.close();
-
-        return employee;
+        return query.getSingleResult();
     }
 }

@@ -26,8 +26,6 @@ public class DepartmentSqlDAO implements DepartmentDAO {
         session.save(department);
 
         transaction.commit();
-
-        sessionFactoryProvider.close();
     }
 
     @Override
@@ -38,8 +36,6 @@ public class DepartmentSqlDAO implements DepartmentDAO {
         session.update(department);
 
         transaction.commit();
-
-        sessionFactoryProvider.close();
     }
 
     @Override
@@ -50,8 +46,6 @@ public class DepartmentSqlDAO implements DepartmentDAO {
         session.delete(department);
 
         transaction.commit();
-
-        sessionFactoryProvider.close();
     }
 
     @Override
@@ -60,10 +54,6 @@ public class DepartmentSqlDAO implements DepartmentDAO {
         Query<Department> query = session.createQuery("FROM Department d WHERE d.id =:id");
         query.setParameter("id", id);
 
-        Department department = query.getSingleResult();
-
-        sessionFactoryProvider.close();
-
-        return department;
+        return query.getSingleResult();
     }
 }

@@ -9,5 +9,5 @@ public interface SessionFactoryProvider {
 
     Session getSession();
 
-    void close();
+    void closeSession();
 }

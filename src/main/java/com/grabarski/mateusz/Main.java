@@ -5,7 +5,7 @@ import com.grabarski.mateusz.database.dao.EmployeeDAO;
 import com.grabarski.mateusz.database.dao.department.DepartmentSqlDAO;
 import com.grabarski.mateusz.database.dao.employee.EmployeeMySqlDAO;
 import com.grabarski.mateusz.database.session.SessionFactoryProvider;
-import com.grabarski.mateusz.database.session.providers.SessionSqlProvider;
+import com.grabarski.mateusz.database.session.factories.SessionProviderFactory;
 import com.grabarski.mateusz.domain.models.Department;
 import com.grabarski.mateusz.domain.models.Employee;
 
@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        SessionFactoryProvider provider = new SessionSqlProvider();
+        SessionFactoryProvider provider = SessionProviderFactory.getSessionProvider(SessionProviderFactory.Provider.SQL);
         DepartmentDAO departmentDAO = new DepartmentSqlDAO(provider);
 
         Department department = departmentDAO.getDepartmentById("d010");
@@ -27,5 +27,7 @@ public class Main {
         Employee employee = employeeDAO.getEmployeeById(600001);
 
         System.out.println(employee);
+
+        provider.closeSession();
     }
 }
