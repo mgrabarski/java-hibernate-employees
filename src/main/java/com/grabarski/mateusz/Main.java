@@ -1,6 +1,6 @@
 package com.grabarski.mateusz;
 
-import com.grabarski.mateusz.domain.models.Employee;
+import com.grabarski.mateusz.domain.models.DepartmentManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,9 +15,9 @@ public class Main {
         try (SessionFactory factory = new Configuration().configure().buildSessionFactory();
              Session session = factory.openSession()) {
 
-            Query<Employee> query = session.createQuery(" FROM Employee e ");
+            Query<DepartmentManager> query = session.createQuery(" FROM DepartmentManager dm ");
 
-            query.stream().forEach(employee -> System.out.println(employee.getDepartments().size()));
+            query.stream().forEach(departmentManager -> System.out.println(departmentManager.getFromDate() + ", " + departmentManager.getToDate()));
         }
     }
 }

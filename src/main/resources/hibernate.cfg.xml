@@ -26,5 +26,6 @@
         <mapping class="com.grabarski.mateusz.domain.models.Salary"/>
         <mapping class="com.grabarski.mateusz.domain.models.Department"/>
         <mapping class="com.grabarski.mateusz.domain.models.DepartmentEmployee"/>
+        <mapping class="com.grabarski.mateusz.domain.models.DepartmentManager"/>
     </session-factory>
 </hibernate-configuration>

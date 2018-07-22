@@ -20,6 +20,9 @@ public class Department {
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private List<DepartmentEmployee> departmentEmployees;
 
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    private List<DepartmentManager> departmentManagers;
+
     public String getDeptNo() {
         return deptNo;
     }
@@ -42,5 +45,13 @@ public class Department {
 
     public void setDepartmentEmployees(List<DepartmentEmployee> departmentEmployees) {
         this.departmentEmployees = departmentEmployees;
+    }
+
+    public List<DepartmentManager> getDepartmentManagers() {
+        return departmentManagers;
+    }
+
+    public void setDepartmentManagers(List<DepartmentManager> departmentManagers) {
+        this.departmentManagers = departmentManagers;
     }
 }
