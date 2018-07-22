@@ -1,10 +1,14 @@
 package com.grabarski.mateusz;
 
-import com.grabarski.mateusz.domain.models.DepartmentManager;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
+import com.grabarski.mateusz.database.dao.EmployeeDAO;
+import com.grabarski.mateusz.database.dao.employee.EmployeeMySqlDAO;
+import com.grabarski.mateusz.database.session.SessionFactoryProvider;
+import com.grabarski.mateusz.database.session.providers.SessionSqlProvider;
+import com.grabarski.mateusz.domain.models.Employee;
+import com.grabarski.mateusz.domain.models.enums.GenderEnum;
+
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * Created by Mateusz Grabarski on 20.07.2018.
@@ -12,12 +16,18 @@ import org.hibernate.query.Query;
 public class Main {
 
     public static void main(String[] args) {
-        try (SessionFactory factory = new Configuration().configure().buildSessionFactory();
-             Session session = factory.openSession()) {
 
-            Query<DepartmentManager> query = session.createQuery(" FROM DepartmentManager dm ");
+        SessionFactoryProvider provider = new SessionSqlProvider();
+        EmployeeDAO employeeDAO = new EmployeeMySqlDAO(provider);
 
-            query.stream().forEach(departmentManager -> System.out.println(departmentManager.getFromDate() + ", " + departmentManager.getToDate()));
-        }
+        Employee employee = new Employee();
+        employee.setEmpNo(600001);
+        employee.setFirstName("Mateusz");
+        employee.setLastName("Grabarski");
+        employee.setBirthDate(Date.valueOf(LocalDate.now()));
+        employee.setGender(GenderEnum.M);
+        employee.setHireDate(Date.valueOf(LocalDate.now()));
+
+        employeeDAO.insert(employee);
     }
 }

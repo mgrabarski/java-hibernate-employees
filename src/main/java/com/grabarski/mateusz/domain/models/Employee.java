@@ -30,6 +30,9 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
 
+    @Column(name = "hire_date")
+    private Date hireDate;
+
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
     private List<Title> titles;
 
@@ -83,6 +86,14 @@ public class Employee {
 
     public void setGender(GenderEnum gender) {
         this.gender = gender;
+    }
+
+    public Date getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
     }
 
     public List<Title> getTitles() {
